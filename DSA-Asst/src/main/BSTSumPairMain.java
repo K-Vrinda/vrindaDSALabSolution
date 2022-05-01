@@ -27,30 +27,30 @@ public class BSTSumPairMain {
 		return root;
 	}
 
-	static boolean helper(Node root, int sum, HashSet<Integer> set) {
+	static boolean helper(Node root, int sum, HashSet<Integer> uniqueNodesBST) {
 		if (root == null) {
 			return false;
 		}
 
-		if (helper(root.left, sum, set)) {
+		if (helper(root.left, sum, uniqueNodesBST)) {
 			return true;
 		}
 
-		if (set.contains(sum - root.data)) {
+		if (uniqueNodesBST.contains(sum - root.data)) {
 			System.out.println("Pair is (" + (sum - root.data) + ", " + root.data + ")");
 			return true;
 		}
 		else {
-			set.add(root.data);
+			uniqueNodesBST.add(root.data);
 		}
 
-		return helper(root.right, sum, set);
+		return helper(root.right, sum, uniqueNodesBST);
 	}
 
 	static void isPairPresent(Node root, int sum){
-		HashSet<Integer> set = new HashSet<Integer>();
+		HashSet<Integer> uniqueNodesBST = new HashSet<Integer>();
 
-		if (!helper(root, sum, set)) {
+		if (!helper(root, sum, uniqueNodesBST)) {
 			System.out.println("Nodes not found");
 		}
 	}
